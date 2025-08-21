@@ -1,0 +1,88 @@
+@prefix dfo: <https://w3id.org/dfo/salmon#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+dfo:EscapementMethodScheme a skos:ConceptScheme ;
+  dcterms:title "DFO Escapement Method Scheme" ;
+  dcterms:created "2025-08-21" ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:creator "DFO Pacific Science — Data Stewardship Unit" .
+
+dfo:concept a skos:Concept ;
+  skos:prefLabel "?"@en ;
+  skos:definition "?"@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:areaUnderTheCurve a skos:Concept ;
+  skos:prefLabel "Area Under the Curve"@en ;
+  skos:definition "Use or modify existing definition?"@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:automatedCountingMethods a skos:Concept ;
+  skos:prefLabel "Automated Counting Methods"@en ;
+  skos:definition "Abundance estimates generated through technology-based direct counts using electronic equipment installed at fixed points in waterbodies that automatically count and process salmon data. This includes resistivity counters that detect fish through electrical conductivity changes, video counters that use automated image analysis to identify and count passing fish, and sonar systems (ARIS, DIDSON) that use acoustic imaging to detect and count salmon movement."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:calibratedTimeSeries a skos:Concept ;
+  skos:prefLabel "Calibrated Time Series"@en ;
+  skos:definition "Use or modify existing definition?"@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:cumulativeCpue a skos:Concept ;
+  skos:prefLabel "Cumulative CPUE"@en ;
+  skos:definition "Remove? Not used in data"@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:cumulativeNew a skos:Concept ;
+  skos:prefLabel "Cumulative New"@en ;
+  skos:definition "Need to contact area biologists (JST&SOG, WCVI) to understand what methodolody is used, and if it is sufficiently different from cumulative CPUE."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:expansionMethodsMultiplyByFactors a skos:Concept ;
+  skos:prefLabel "Expansion Methods (multiply by factors)"@en ;
+  skos:definition "Abundance estimates derived by extrapolating a sample count or peak observation to estimate total population using expansion factors. This includes peak live count expansion, combined peak live plus cumulative dead expansion, expanding the dead recoveries of lake-spawning salmon by recovery effort, and redd count expansion (multiplying redd counts by spawners-per-redd factors)."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:expertOpinion a skos:Concept ;
+  skos:prefLabel "Expert Opinion"@en ;
+  skos:definition "An estimate based on consultation between stock assessment biologists and survey crews. Factors considered when making the estimate include the estimates from surveys with the highest reliability, the peak count, estimates from nearby streams and the escapements from previous years."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:fixedStationCountAnalysis a skos:Concept ;
+  skos:prefLabel "Fixed Station Count Analysis"@en ;
+  skos:definition "Abundance estimates derived by analyzing and combining multiple manual count observations from fixed monitoring locations. This includes aggregating daily fence observations into annual estimates and integrating fixed site census data across multiple survey periods to generate total abundance estimates."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:markRecaptureAnalysis a skos:Concept ;
+  skos:prefLabel "Mark-Recapture Analysis"@en ;
+  skos:definition "Abundance estimates generated through statistical models (including Petersen, Jolly-Seber, Bayesian, or open models) applied to mark-recapture data from stream inspection logs."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:mathematicalOperations a skos:Concept ;
+  skos:prefLabel "Mathematical Operations"@en ;
+  skos:definition "Abundance estimates derived by applying basic arithmetic calculations to raw salmon escapement observations. This includes addition/subtraction methods that combine multiple observations into single estimates and multiplication/division methods that adjust observations using correction factors."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:peakCountAnalysis a skos:Concept ;
+  skos:prefLabel "Peak Count Analysis"@en ;
+  skos:definition "Abundance estimates derived by identifying the survey with the maximum live count observed and using this peak timing as the basis for annual abundance estimation. This includes peak live plus dead (summing the live and dead counts from the peak survey only) and peak live plus cumulative dead (summing the live count from the peak survey with the cumulative total of dead counts prior to and including that survey)."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:unknown a skos:Concept ;
+  skos:prefLabel "Unknown"@en ;
+  skos:definition "Cases where the estimate method used cannot be clearly categorized due to missing documentation, insufficient information (no inspections were performed), undefined methodologies, methods that do not fit into other pre-defined categories, or combined estimate methods were used."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .

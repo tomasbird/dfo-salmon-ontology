@@ -1,0 +1,124 @@
+@prefix dfo: <https://w3id.org/dfo/salmon#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
+@prefix dwciri: <http://rs.tdwg.org/dwc/iri/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix schema: <http://schema.org/> .
+
+dfo:OntologyCore a owl:Ontology ;
+  dcterms:title "DFO Salmon — Core Ontology" ;
+  dcterms:created "2025-08-21" ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:creator "DFO Pacific Science — Data Stewardship Unit" ;
+  rdfs:comment "Core classes and properties shared by modules (stock, genetics, governance)." .
+
+dfo:Stock a owl:Class ;
+  rdfs:label "Stock (Population)"@en ;
+  rdfs:comment "A biologically-meaningful salmon stock/population unit used in assessment."@en .
+
+dfo:ConservationUnit a owl:Class ;
+  rdfs:label "Conservation Unit (CU)"@en ;
+  rdfs:comment "WSP Conservation Unit."@en .
+
+dfo:ManagementUnit a owl:Class ;
+  rdfs:label "Management Unit (MU)"@en ;
+  rdfs:comment "Management unit used for fisheries planning and reporting."@en .
+
+dfo:SurveyEvent a owl:Class ;
+  rdfs:label "Survey Event"@en ;
+  rdfs:comment "A field event associated with escapement monitoring."@en .
+
+dfo:EscapementMeasurement a owl:Class ;
+  rdfs:label "Escapement Measurement"@en ;
+  rdfs:comment "A measurement or estimate of escapement tied to an Event/Stock."@en .
+
+dfo:ReportingUnit a owl:Class ;
+  rdfs:label "Reporting Unit (GSI)"@en ;
+  rdfs:comment "Genetic reporting unit or repunit used in GSI results."@en .
+
+dfo:Dataset a owl:Class ;
+  rdfs:label "Dataset"@en ;
+  rdfs:subClassOf schema:Dataset ;
+  rdfs:comment "A dataset registered in catalogues (e.g., GeoNetwork)."@en .
+
+dfo:Indicator a owl:Class ;
+  rdfs:label "Indicator"@en ;
+  rdfs:comment "Derived assessment indicator used in FSAR or stock status reporting."@en .
+
+dfo:hasConservationUnit a owl:ObjectProperty ;
+  rdfs:label "has conservation unit"@en ;
+  rdfs:domain dfo:Stock ;
+  rdfs:range dfo:ConservationUnit ;
+  rdfs:comment "Associates a Stock with its WSP Conservation Unit."@en .
+
+dfo:hasManagementUnit a owl:ObjectProperty ;
+  rdfs:label "has management unit"@en ;
+  rdfs:domain dfo:Stock ;
+  rdfs:range dfo:ManagementUnit ;
+  rdfs:comment "Associates a Stock with a management unit."@en .
+
+dfo:aboutStock a owl:ObjectProperty ;
+  rdfs:label "about stock"@en ;
+  rdfs:domain dfo:EscapementMeasurement ;
+  rdfs:range dfo:Stock ;
+  rdfs:comment "Links a measurement to the stock it describes."@en .
+
+dfo:observedDuring a owl:ObjectProperty ;
+  rdfs:label "observed during"@en ;
+  rdfs:domain dfo:EscapementMeasurement ;
+  rdfs:range dfo:SurveyEvent ;
+  rdfs:comment "Links a measurement to its survey event."@en .
+
+dfo:usesMethod a owl:ObjectProperty ;
+  rdfs:label "uses method"@en ;
+  rdfs:domain dfo:EscapementMeasurement ;
+  rdfs:range skos:Concept ;
+  rdfs:comment "Method concept from the Escapement Method Scheme."@en .
+
+dfo:hasIndicator a owl:ObjectProperty ;
+  rdfs:label "has indicator"@en ;
+  rdfs:domain dfo:Stock ;
+  rdfs:range dfo:Indicator ;
+  rdfs:comment "Stock has an associated indicator time series or value."@en .
+
+dfo:eventDate a owl:DatatypeProperty ;
+  rdfs:label "event date"@en ;
+  rdfs:domain dfo:SurveyEvent ;
+  rdfs:range xsd:date ;
+  rdfs:comment "Date of the survey event."@en .
+
+dfo:countValue a owl:DatatypeProperty ;
+  rdfs:label "count value"@en ;
+  rdfs:domain dfo:EscapementMeasurement ;
+  rdfs:range xsd:integer ;
+  rdfs:comment "Escapement count or estimate (integer)."@en .
+
+dfo:countUnit a owl:DatatypeProperty ;
+  rdfs:label "count unit"@en ;
+  rdfs:domain dfo:EscapementMeasurement ;
+  rdfs:range rdfs:Resource ;
+  rdfs:comment "Unit IRI (e.g., unit:Each)."@en .
+
+dfo:region a owl:DatatypeProperty ;
+  rdfs:label "region"@en ;
+  rdfs:domain dfo:SurveyEvent ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Region label for aggregation (temporary literal)."@en .
+dfo:taxon a owl:ObjectProperty ;
+  rdfs:label "taxon"@en ;
+  rdfs:domain dfo:Stock ;
+  rdfs:range rdfs:Resource ;
+  rdfs:subPropertyOf dwciri:taxonID ;
+  rdfs:comment "Link a Stock to a taxon IRI (GBIF Backbone recommended)."@en .
+
+### Hybrid SKOS/OWL scaffolding (annotation properties)
+dfo:expectedRole a owl:AnnotationProperty ; rdfs:label "expected role (class|instance|uncertain)"@en .
+dfo:granularityLevel a owl:AnnotationProperty ; rdfs:label "granularity level"@en .
+dfo:hasIdentityDimension a owl:AnnotationProperty ; rdfs:label "identity dimension"@en .
+dfo:translatesToOWL a owl:AnnotationProperty ; rdfs:label "intended OWL translation"@en .
+dfo:reifies a owl:AnnotationProperty ; rdfs:label "reifies triple pattern"@en .

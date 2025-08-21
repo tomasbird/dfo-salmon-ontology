@@ -1,0 +1,11 @@
+@prefix dfo: <https://w3id.org/dfo/salmon#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+dfo:Ontology a owl:Ontology ;
+  dcterms:title "DFO Salmon Ontology — Modular Start" ;
+  owl:imports dfo:OntologyCore , dfo:OntologyStock ;
+  dcterms:created "2025-08-21" ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  rdfs:comment "Top-level ontology that imports core and stock module. Genetics and governance modules can be added later." .
