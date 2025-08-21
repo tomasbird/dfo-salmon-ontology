@@ -1,0 +1,231 @@
+@prefix dfo: <https://w3id.org/dfo/salmon#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+dfo:Ontology a owl:Ontology ;
+  dcterms:title "DFO Salmon Ontology — Modular Start" ;
+  dcterms:created "2025-08-21" ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  rdfs:comment "Top-level ontology that imports core and stock module. Genetics and governance modules can be added later." .
+
+
+# --- Core ---
+
+
+dfo:OntologyCore a owl:Ontology ;
+  dcterms:title "DFO Salmon — Core Ontology" ;
+  dcterms:created "2025-08-21" ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:creator "DFO Pacific Science — Data Stewardship Unit" ;
+  rdfs:comment "Core classes and properties shared by modules (stock, genetics, governance)." .
+
+dfo:Stock a owl:Class ;
+  rdfs:label "Stock (Population)"@en ;
+  rdfs:comment "A biologically-meaningful salmon stock/population unit used in assessment."@en .
+
+dfo:ConservationUnit a owl:Class ;
+  rdfs:label "Conservation Unit (CU)"@en ;
+  rdfs:comment "WSP Conservation Unit."@en .
+
+dfo:ManagementUnit a owl:Class ;
+  rdfs:label "Management Unit (MU)"@en ;
+  rdfs:comment "Management unit used for fisheries planning and reporting."@en .
+
+dfo:SurveyEvent a owl:Class ;
+  rdfs:label "Survey Event"@en ;
+  rdfs:comment "A field event associated with escapement monitoring."@en .
+
+dfo:EscapementMeasurement a owl:Class ;
+  rdfs:label "Escapement Measurement"@en ;
+  rdfs:comment "A measurement or estimate of escapement tied to an Event/Stock."@en .
+
+dfo:ReportingUnit a owl:Class ;
+  rdfs:label "Reporting Unit (GSI)"@en ;
+  rdfs:comment "Genetic reporting unit or repunit used in GSI results."@en .
+
+dfo:Dataset a owl:Class ;
+  rdfs:label "Dataset"@en ;
+  rdfs:subClassOf schema:Dataset ;
+  rdfs:comment "A dataset registered in catalogues (e.g., GeoNetwork)."@en .
+
+dfo:Indicator a owl:Class ;
+  rdfs:label "Indicator"@en ;
+  rdfs:comment "Derived assessment indicator used in FSAR or stock status reporting."@en .
+
+dfo:hasConservationUnit a owl:ObjectProperty ;
+  rdfs:label "has conservation unit"@en ;
+  rdfs:domain dfo:Stock ;
+  rdfs:range dfo:ConservationUnit ;
+  rdfs:comment "Associates a Stock with its WSP Conservation Unit."@en .
+
+dfo:hasManagementUnit a owl:ObjectProperty ;
+  rdfs:label "has management unit"@en ;
+  rdfs:domain dfo:Stock ;
+  rdfs:range dfo:ManagementUnit ;
+  rdfs:comment "Associates a Stock with a management unit."@en .
+
+dfo:aboutStock a owl:ObjectProperty ;
+  rdfs:label "about stock"@en ;
+  rdfs:domain dfo:EscapementMeasurement ;
+  rdfs:range dfo:Stock ;
+  rdfs:comment "Links a measurement to the stock it describes."@en .
+
+dfo:observedDuring a owl:ObjectProperty ;
+  rdfs:label "observed during"@en ;
+  rdfs:domain dfo:EscapementMeasurement ;
+  rdfs:range dfo:SurveyEvent ;
+  rdfs:comment "Links a measurement to its survey event."@en .
+
+dfo:usesMethod a owl:ObjectProperty ;
+  rdfs:label "uses method"@en ;
+  rdfs:domain dfo:EscapementMeasurement ;
+  rdfs:range skos:Concept ;
+  rdfs:comment "Method concept from the Escapement Method Scheme."@en .
+
+dfo:hasIndicator a owl:ObjectProperty ;
+  rdfs:label "has indicator"@en ;
+  rdfs:domain dfo:Stock ;
+  rdfs:range dfo:Indicator ;
+  rdfs:comment "Stock has an associated indicator time series or value."@en .
+
+dfo:eventDate a owl:DatatypeProperty ;
+  rdfs:label "event date"@en ;
+  rdfs:domain dfo:SurveyEvent ;
+  rdfs:range xsd:date ;
+  rdfs:comment "Date of the survey event."@en .
+
+dfo:countValue a owl:DatatypeProperty ;
+  rdfs:label "count value"@en ;
+  rdfs:domain dfo:EscapementMeasurement ;
+  rdfs:range xsd:integer ;
+  rdfs:comment "Escapement count or estimate (integer)."@en .
+
+dfo:countUnit a owl:DatatypeProperty ;
+  rdfs:label "count unit"@en ;
+  rdfs:domain dfo:EscapementMeasurement ;
+  rdfs:range rdfs:Resource ;
+  rdfs:comment "Unit IRI (e.g., unit:Each)."@en .
+
+dfo:region a owl:DatatypeProperty ;
+  rdfs:label "region"@en ;
+  rdfs:domain dfo:SurveyEvent ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Region label for aggregation (temporary literal)."@en .
+dfo:taxon a owl:ObjectProperty ;
+  rdfs:label "taxon"@en ;
+  rdfs:domain dfo:Stock ;
+  rdfs:range rdfs:Resource ;
+  rdfs:subPropertyOf dwciri:taxonID ;
+  rdfs:comment "Link a Stock to a taxon IRI (GBIF Backbone recommended)."@en .
+
+### Hybrid SKOS/OWL scaffolding (annotation properties)
+dfo:expectedRole a owl:AnnotationProperty ; rdfs:label "expected role (class|instance|uncertain)"@en .
+dfo:granularityLevel a owl:AnnotationProperty ; rdfs:label "granularity level"@en .
+dfo:hasIdentityDimension a owl:AnnotationProperty ; rdfs:label "identity dimension"@en .
+dfo:translatesToOWL a owl:AnnotationProperty ; rdfs:label "intended OWL translation"@en .
+dfo:reifies a owl:AnnotationProperty ; rdfs:label "reifies triple pattern"@en .
+
+
+# --- Stock ---
+
+
+dfo:OntologyStock a owl:Ontology ;
+  dcterms:title "DFO Salmon — Stock Assessment Module" ;
+  owl:imports dfo:OntologyCore ;
+  dcterms:created "2025-08-21" ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  rdfs:comment "Adds stock assessment concepts: escapement events/measurements, indicators, and links to SKOS methods." .
+
+dfo:EscapementSurveyEvent rdfs:subClassOf dfo:SurveyEvent .
+dfo:SonarCountMeasurement rdfs:subClassOf dfo:EscapementMeasurement .
+dfo:WeirCountMeasurement rdfs:subClassOf dfo:EscapementMeasurement .
+dfo:AerialCountMeasurement rdfs:subClassOf dfo:EscapementMeasurement .
+
+
+# --- Escapement Methods Vocabulary ---
+
+
+dfo:EscapementMethodScheme a skos:ConceptScheme ;
+  dcterms:title "DFO Escapement Method Scheme" ;
+  dcterms:created "2025-08-21" ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:creator "DFO Pacific Science — Data Stewardship Unit" .
+
+dfo:concept a skos:Concept ;
+  skos:prefLabel "?"@en ;
+  skos:definition "?"@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:areaUnderTheCurve a skos:Concept ;
+  skos:prefLabel "Area Under the Curve"@en ;
+  skos:definition "Use or modify existing definition?"@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:automatedCountingMethods a skos:Concept ;
+  skos:prefLabel "Automated Counting Methods"@en ;
+  skos:definition "Abundance estimates generated through technology-based direct counts using electronic equipment installed at fixed points in waterbodies that automatically count and process salmon data. This includes resistivity counters that detect fish through electrical conductivity changes, video counters that use automated image analysis to identify and count passing fish, and sonar systems (ARIS, DIDSON) that use acoustic imaging to detect and count salmon movement."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:calibratedTimeSeries a skos:Concept ;
+  skos:prefLabel "Calibrated Time Series"@en ;
+  skos:definition "Use or modify existing definition?"@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:cumulativeCpue a skos:Concept ;
+  skos:prefLabel "Cumulative CPUE"@en ;
+  skos:definition "Remove? Not used in data"@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:cumulativeNew a skos:Concept ;
+  skos:prefLabel "Cumulative New"@en ;
+  skos:definition "Need to contact area biologists (JST&SOG, WCVI) to understand what methodolody is used, and if it is sufficiently different from cumulative CPUE."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:expansionMethodsMultiplyByFactors a skos:Concept ;
+  skos:prefLabel "Expansion Methods (multiply by factors)"@en ;
+  skos:definition "Abundance estimates derived by extrapolating a sample count or peak observation to estimate total population using expansion factors. This includes peak live count expansion, combined peak live plus cumulative dead expansion, expanding the dead recoveries of lake-spawning salmon by recovery effort, and redd count expansion (multiplying redd counts by spawners-per-redd factors)."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:expertOpinion a skos:Concept ;
+  skos:prefLabel "Expert Opinion"@en ;
+  skos:definition "An estimate based on consultation between stock assessment biologists and survey crews. Factors considered when making the estimate include the estimates from surveys with the highest reliability, the peak count, estimates from nearby streams and the escapements from previous years."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:fixedStationCountAnalysis a skos:Concept ;
+  skos:prefLabel "Fixed Station Count Analysis"@en ;
+  skos:definition "Abundance estimates derived by analyzing and combining multiple manual count observations from fixed monitoring locations. This includes aggregating daily fence observations into annual estimates and integrating fixed site census data across multiple survey periods to generate total abundance estimates."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:markRecaptureAnalysis a skos:Concept ;
+  skos:prefLabel "Mark-Recapture Analysis"@en ;
+  skos:definition "Abundance estimates generated through statistical models (including Petersen, Jolly-Seber, Bayesian, or open models) applied to mark-recapture data from stream inspection logs."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:mathematicalOperations a skos:Concept ;
+  skos:prefLabel "Mathematical Operations"@en ;
+  skos:definition "Abundance estimates derived by applying basic arithmetic calculations to raw salmon escapement observations. This includes addition/subtraction methods that combine multiple observations into single estimates and multiplication/division methods that adjust observations using correction factors."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:peakCountAnalysis a skos:Concept ;
+  skos:prefLabel "Peak Count Analysis"@en ;
+  skos:definition "Abundance estimates derived by identifying the survey with the maximum live count observed and using this peak timing as the basis for annual abundance estimation. This includes peak live plus dead (summing the live and dead counts from the peak survey only) and peak live plus cumulative dead (summing the live count from the peak survey with the cumulative total of dead counts prior to and including that survey)."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
+
+dfo:unknown a skos:Concept ;
+  skos:prefLabel "Unknown"@en ;
+  skos:definition "Cases where the estimate method used cannot be clearly categorized due to missing documentation, insufficient information (no inspections were performed), undefined methodologies, methods that do not fit into other pre-defined categories, or combined estimate methods were used."@en ;
+  skos:inScheme dfo:EscapementMethodScheme ;
+  skos:topConceptOf dfo:EscapementMethodScheme .
