@@ -1,7 +1,16 @@
-@prefix dfo: <https://w3id.org/dfo/salmon#> .
-@prefix owl:  <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dfo:    <https://w3id.org/dfo/salmon#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms:<http://purl.org/dc/terms/> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix dwc:    <http://rs.tdwg.org/dwc/terms/> .
+@prefix dwciri: <http://rs.tdwg.org/dwc/iri/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix unit:   <http://qudt.org/vocab/unit/> .
+@prefix schema: <http://schema.org/> .
+
 
 dfo:Ontology a owl:Ontology ;
   dcterms:title "DFO Salmon Ontology — Modular Start" ;
@@ -9,9 +18,7 @@ dfo:Ontology a owl:Ontology ;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
   rdfs:comment "Top-level ontology that imports core and stock module. Genetics and governance modules can be added later." .
 
-
-# --- Core ---
-
+# ---- Section Break ----
 
 dfo:OntologyCore a owl:Ontology ;
   dcterms:title "DFO Salmon — Core Ontology" ;
@@ -126,13 +133,10 @@ dfo:hasIdentityDimension a owl:AnnotationProperty ; rdfs:label "identity dimensi
 dfo:translatesToOWL a owl:AnnotationProperty ; rdfs:label "intended OWL translation"@en .
 dfo:reifies a owl:AnnotationProperty ; rdfs:label "reifies triple pattern"@en .
 
-
-# --- Stock ---
-
+# ---- Section Break ----
 
 dfo:OntologyStock a owl:Ontology ;
   dcterms:title "DFO Salmon — Stock Assessment Module" ;
-  owl:imports dfo:OntologyCore ;
   dcterms:created "2025-08-21" ;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
   rdfs:comment "Adds stock assessment concepts: escapement events/measurements, indicators, and links to SKOS methods." .
@@ -142,9 +146,7 @@ dfo:SonarCountMeasurement rdfs:subClassOf dfo:EscapementMeasurement .
 dfo:WeirCountMeasurement rdfs:subClassOf dfo:EscapementMeasurement .
 dfo:AerialCountMeasurement rdfs:subClassOf dfo:EscapementMeasurement .
 
-
-# --- Escapement Methods Vocabulary ---
-
+# ---- Section Break ----
 
 dfo:EscapementMethodScheme a skos:ConceptScheme ;
   dcterms:title "DFO Escapement Method Scheme" ;
