@@ -75,19 +75,6 @@ The ontology **reuses DwC/DwC-DP** as the ecological backbone (classes like Even
 
 ---
 
-## Quickstart (WebProtégé)
-
-1. Open your WebProtégé project (or create a new one).  
-2. **Upload** `dfo-salmon.ttl`. (It imports `dfo-salmon-core.ttl` and `dfo-salmon-stock.ttl` automatically.)  
-3. To standardize methods across datasets, **upload** `vocab-escapement-methods.ttl` (SKOS) or keep it in the same triple store.  
-4. Start adding **your DFO-specific subclasses** and properties in WebProtégé:
-   - `dfo:EscapementSurveyEvent ⊑ dfo:SurveyEvent`
-   - `dfo:WeirCountMeasurement ⊑ dfo:EscapementMeasurement`
-   - `dfo:SonarCountMeasurement ⊑ dfo:EscapementMeasurement`
-5. Keep **locations and agents as literals** for now (your stated preference). When ready, switch to `dwciri:` properties for IRIs without changing classes.
-
----
-
 ## Modeling Principles
 
 ### DwC vs `dwciri:` (literals vs IRIs)
@@ -161,6 +148,7 @@ Core classes and properties shared across modules:
 
 ---
 
+TODO:
 ## W3ID Setup
 
 1. Create `/w3id/dfo/salmon/` in this repo (or a sibling “infra” repo) with an `.htaccess` such as:
