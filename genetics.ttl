@@ -1,0 +1,186 @@
+@prefix dfo:    <https://w3id.org/dfo/salmon#> .
+@prefix dwc:    <http://rs.tdwg.org/dwc/terms/> .
+@prefix dwciri: <http://rs.tdwg.org/dwc/iri/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix unit:   <http://qudt.org/vocab/unit/> .
+
+#################################################################
+# Genetics / GSI Module
+#################################################################
+
+### Classes
+
+dfo:GeneticSample a owl:Class ;
+  rdfs:subClassOf dwc:MaterialSample ;
+  rdfs:label "Genetic Sample"@en ;
+  rdfs:comment "Tissue/material used in GSI or lab analyses."@en .
+
+dfo:GSIRun a owl:Class ;
+  rdfs:label "GSI Run"@en ;
+  rdfs:comment "Computational run of GSI assignment (e.g., ONCOR, RUBIAS, BAYES)."@en .
+
+dfo:GSICompositionMeasurement a owl:Class ;
+  rdfs:subClassOf dwc:MeasurementOrFact ;
+  rdfs:label "GSI Composition Measurement"@en ;
+  rdfs:comment "Estimated proportion of individuals assigned to a reporting unit in a GSI run."@en .
+
+dfo:ReportingUnit a owl:Class ;
+  rdfs:label "Reporting Unit"@en ;
+  rdfs:comment "Genetic reporting unit (repunit) used in GSI outputs."@en .
+
+dfo:Assay a owl:Class ;
+  rdfs:label "Assay"@en ;
+  rdfs:comment "Lab assay or test applied to a genetic sample."@en .
+
+dfo:MarkerPanel a owl:Class ;
+  rdfs:label "Marker Panel"@en ;
+  rdfs:comment "Set of genetic markers (e.g., SNP panel) used for GSI."@en .
+
+dfo:Protocol a owl:Class ;
+  rdfs:label "Protocol"@en ;
+  rdfs:comment "Protocol followed in lab or computational analysis."@en .
+
+
+#################################################################
+# Object Properties
+#################################################################
+
+dfo:sampledDuring a owl:ObjectProperty ;
+  rdfs:domain dfo:GeneticSample ;
+  rdfs:range dwc:Event ;
+  rdfs:label "sampled during"@en ;
+  rdfs:comment "GeneticSample collected during a Survey Event."@en .
+
+dfo:ofStock a owl:ObjectProperty ;
+  rdfs:domain dfo:GeneticSample ;
+  rdfs:range dfo:Stock ;
+  rdfs:label "of stock"@en ;
+  rdfs:comment "Sample is associated with a Stock (if known)."@en .
+
+dfo:usedAssay a owl:ObjectProperty ;
+  rdfs:domain dfo:GSIRun ;
+  rdfs:range dfo:Assay ;
+  rdfs:label "used assay"@en .
+
+dfo:usedMarkerPanel a owl:ObjectProperty ;
+  rdfs:domain dfo:GSIRun ;
+  rdfs:range dfo:MarkerPanel ;
+  rdfs:label "used marker panel"@en .
+
+dfo:usedProtocol a owl:ObjectProperty ;
+  rdfs:domain dfo:GSIRun ;
+  rdfs:range dfo:Protocol ;
+  rdfs:label "used protocol"@en .
+
+dfo:analyzesSamples a owl:ObjectProperty ;
+  rdfs:domain dfo:GSIRun ;
+  rdfs:range dfo:GeneticSample ;
+  rdfs:label "analyzes samples"@en .
+
+dfo:producedMeasurement a owl:ObjectProperty ;
+  rdfs:domain dfo:GSIRun ;
+  rdfs:range dfo:GSICompositionMeasurement ;
+  rdfs:label "produced measurement"@en .
+
+dfo:derivedFromSample a owl:ObjectProperty ;
+  rdfs:domain dfo:GSICompositionMeasurement ;
+  rdfs:range dfo:GeneticSample ;
+  rdfs:label "derived from sample"@en .
+
+dfo:aboutReportingUnit a owl:ObjectProperty ;
+  rdfs:domain dfo:GSICompositionMeasurement ;
+  rdfs:range dfo:ReportingUnit ;
+  rdfs:label "about reporting unit"@en .
+
+dfo:hasReportingUnit a owl:ObjectProperty ;
+  rdfs:domain dfo:Stock ;
+  rdfs:range dfo:ReportingUnit ;
+  rdfs:label "has reporting unit"@en .
+
+dfo:ruExactMatch a owl:ObjectProperty ;
+  rdfs:domain dfo:ReportingUnit ;
+  rdfs:range dfo:ConservationUnit ;
+  rdfs:label "exact match to CU"@en .
+
+dfo:ruCloseMatch a owl:ObjectProperty ;
+  rdfs:domain dfo:ReportingUnit ;
+  rdfs:range dfo:ConservationUnit ;
+  rdfs:label "close match to CU"@en .
+
+#################################################################
+# Datatype Properties
+#################################################################
+
+dfo:estimateValue a owl:DatatypeProperty ;
+  rdfs:domain dfo:GSICompositionMeasurement ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "estimate value"@en .
+
+dfo:estimateUnit a owl:ObjectProperty ;
+  rdfs:domain dfo:GSICompositionMeasurement ;
+  rdfs:range rdfs:Resource ;
+  rdfs:label "estimate unit"@en ;
+  rdfs:comment "Unit IRI for estimate (e.g., unit:One or unit:PERCENT)."@en .
+
+dfo:standardError a owl:DatatypeProperty ;
+  rdfs:domain dfo:GSICompositionMeasurement ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "standard error"@en .
+
+dfo:ciLower a owl:DatatypeProperty ;
+  rdfs:domain dfo:GSICompositionMeasurement ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "confidence interval lower"@en .
+
+dfo:ciUpper a owl:DatatypeProperty ;
+  rdfs:domain dfo:GSICompositionMeasurement ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "confidence interval upper"@en .
+
+dfo:confidenceLevel a owl:DatatypeProperty ;
+  rdfs:domain dfo:GSICompositionMeasurement ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "confidence level"@en ;
+  rdfs:comment "E.g. 0.95 for 95% confidence."@en .
+
+dfo:methodName a owl:DatatypeProperty ;
+  rdfs:domain dfo:GSIRun ;
+  rdfs:range xsd:string ;
+  rdfs:label "method name"@en .
+
+dfo:baselineName a owl:DatatypeProperty ;
+  rdfs:domain dfo:GSIRun ;
+  rdfs:range xsd:string ;
+  rdfs:label "baseline name"@en .
+
+dfo:runDate a owl:DatatypeProperty ;
+  rdfs:domain dfo:GSIRun ;
+  rdfs:range xsd:date ;
+  rdfs:label "run date"@en .
+
+dfo:runNote a owl:DatatypeProperty ;
+  rdfs:domain dfo:GSIRun ;
+  rdfs:range xsd:string ;
+  rdfs:label "run note"@en .
+
+dfo:sampleID a owl:DatatypeProperty ;
+  rdfs:domain dfo:GeneticSample ;
+  rdfs:range xsd:string ;
+  rdfs:label "sample ID"@en .
+
+dfo:tissueType a owl:DatatypeProperty ;
+  rdfs:domain dfo:GeneticSample ;
+  rdfs:range xsd:string ;
+  rdfs:label "tissue type"@en .
+
+dfo:collectionMethod a owl:DatatypeProperty ;
+  rdfs:domain dfo:GeneticSample ;
+  rdfs:range xsd:string ;
+  rdfs:label "collection method"@en .
+
+#################################################################
+# End of Genetics Module
+#################################################################
