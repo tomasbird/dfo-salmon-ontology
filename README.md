@@ -1,319 +1,175 @@
-
-# DFO Salmon Ontology
-
-**Namespace:** `https://w3id.org/dfo/salmon#` (`dfo:`)  
+# DFO Salmon Ontology  
+**Namespace:** https://w3id.org/dfo/salmon# (dfo:)  
 **License:** CC-BY 4.0  
-**Status:** Starter, modular, WebProtégé-ready
+**Status:** Starter, modular, WebProtégé-ready  
 
-This repository hosts a modular ontology for DFO salmon data that reuses the Darwin Core / Darwin Core Data Package (DwC/DwC-DP) ecosystem while adding DFO-specific stock assessment concepts, vocabularies, and hooks for genetics and governance. The design goal is simple: **make integration and analysis easier for scientists, while remaining interoperable with external communities (GBIF Backbone, ENVO, OBIS, etc.).**
-
----
-
-## Table of Contents
-- [Overview](#overview)
-- [Namespace, Licensing, and Versioning](#namespace-licensing-and-versioning)
-- [Repository Layout](#repository-layout)
-- [Quickstart (WebProtégé)](#quickstart-webprotégé)
-- [Modeling Principles](#modeling-principles)
-  - [DwC vs `dwciri:` (literals vs IRIs)](#dwc-vs-dwciri-literals-vs-iris)
-  - [Units (QUDT/OM)](#units-qudtom)
-  - [Modularization](#modularization)
-  - [SKOS + OWL “hybrid”](#skos--owl-hybrid)
-- [Ontology Modules](#ontology-modules)
-  - [Core](#core)
-  - [Stock Assessment](#stock-assessment)
-  - [Vocabularies](#vocabularies)
-  - [Future: Genetics](#future-genetics)
-  - [Future: Governance / Provenance](#future-governance--provenance)
-- [IRI Policy](#iri-policy)
-- [W3ID Setup](#w3id-setup)
-- [Competency Questions & Example SPARQL](#competency-questions--example-sparql)
-- [Contributing](#contributing)
-- [Roadmap (GitHub Issues)](#roadmap-github-issues)
-- [Acknowledgments](#acknowledgments)
+I’m developing this modular ontology for DFO salmon data. It builds on the Darwin Core / Darwin Core Data Package (DwC/DwC-DP) ecosystem while adding DFO-specific stock assessment concepts, vocabularies, and future hooks for genetics and governance. My goal is to make integration and analysis easier for scientists, while keeping everything interoperable with external communities like GBIF Backbone, ENVO, and OBIS.  
 
 ---
 
-## Overview
-
-This ontology provides a **domain-fit semantic layer** for DFO salmon data, centered on:
-- **Integration & interoperability** (align stocks, methods, and variables across datasets; use GBIF Backbone for taxa).
-- **Operational workflow & governance** (enable stewardship roles and traceable provenance).
-- **Discovery & retrieval** (classify datasets, methods, variables; expose metadata for catalog search).
-
-The ontology **reuses DwC/DwC-DP** as the ecological backbone (classes like Event, Occurrence; relationships mirrored as local DFO properties) and adds DFO-specific layers for **stock assessment**, **vocabulary alignment**, and **future genetics/governance**.
-
----
-
-## Namespace, Licensing, and Versioning
-
-- **Base IRI / Namespace:** `https://w3id.org/dfo/salmon#` (prefix `dfo:`)
-- **Owner/Maintainer:** DFO Pacific Science — Data Stewardship Unit
-- **License:** [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-
-### Versioning
-- The ontology header includes `owl:versionInfo`. For releases, also include an `owl:versionIRI` (e.g., `https://w3id.org/dfo/salmon/1.0`).
-- Tag releases in GitHub (e.g., `v1.0.0`). Optionally archive via Zenodo to assign a DOI.
+## Table of Contents  
+- Overview  
+- Namespace, Licensing, and Versioning  
+- Repository Layout  
+- Quickstart (WebProtégé)  
+- Modeling Principles  
+- Ontology Modules  
+- IRI Policy  
+- W3ID Setup  
+- Competency Questions & Example SPARQL  
+- Contributing  
+- Roadmap (GitHub Issues)  
+- Acknowledgments  
 
 ---
 
-## Repository Layout
+## Overview  
 
-```
+This ontology is my attempt to create a domain-fit semantic layer for DFO salmon data. My overall approach is to **start simple and modular, while staying compatible with the larger semantic web ecosystem**.  
+
+I use **Darwin Core (DwC)** and **DwC-DP** as the ecological backbone, since these are widely adopted by biodiversity communities. From there, I add **DFO-specific layers** for stock assessment, vocabularies, and later genetics and governance.  
+
+Key technologies and tools I rely on:  
+- **Turtle (.ttl)** for ontology modules (human-readable, machine-processable).  
+- **SKOS** for controlled vocabularies (method names, categories, terminology).  
+- **OWL** for the ontology data model (classes and relationships).  
+- **QUDT/OM** for unambiguous units.  
+- **W3ID** for persistent, stable IRIs that can be dereferenced.  
+- **WebProtégé** for collaborative editing and community review.  
+- **WebVOWL** for visualization and teaching/explaining model structure.  
+- **GitHub** for version control, issue tracking, and structured contributions.  
+
+**Design philosophy:**  
+- Start with the **minimal viable structure** to represent stock assessment data in a machine-readable way.  
+- Use **community review** (via SKOS vocabularies and WebProtégé editing) to refine and expand.  
+- Maintain **modularity**: Core, Stock Assessment, and vocabularies are in separate `.ttl` files, but they can be combined into a single merged ontology for easier viewing/editing in WebProtégé or WebVOWL.  
+- Ensure that edits in WebProtégé/WebVOWL are not treated as the sole “source of truth.” Any approved changes must also be updated in the **module-specific `.ttl` files** in this repository.  
+
+This dual system—**easy merged viewing/editing** plus **modular maintenance**—gives flexibility while keeping the ontology organized and sustainable.  
+
+---
+
+## Namespace, Licensing, and Versioning  
+- **Base IRI / Namespace:** https://w3id.org/dfo/salmon# (prefix dfo:)  
+- **Owner/Maintainer:** DFO Pacific Science — Data Stewardship Unit  
+- **License:** CC-BY 4.0  
+
+**Versioning**  
+- I include `owl:versionInfo` in the ontology header.  
+- For releases, I add an `owl:versionIRI` (e.g., https://w3id.org/dfo/salmon/1.0).  
+- I tag releases in GitHub (v1.0.0) and may archive via Zenodo to assign a DOI.  
+
+---
+
+## Repository Layout  
 /dfo-salmon-ontology
-├── README.md                ← This file
-├── dfo-salmon.ttl           ← Top-level ontology; imports modules
-├── dfo-salmon-core.ttl      ← Core classes/properties (shared)
-├── dfo-salmon-stock.ttl     ← Stock assessment module (events, counts, indicators)
-├── vocab-escapement-methods.ttl  ← SKOS scheme from DFO spreadsheet
-├── /docs/                   ← (optional) HTML docs (pyLODE/WIDOCO)
-├── /mapping/                ← (optional) term mapping sheets, sample data
-└── /w3id/                   ← .htaccess for w3id (see below)
-```
+├── README.md ← This file
+├── dfo-salmon.ttl ← Top-level ontology; imports modules
+├── dfo-salmon-core.ttl ← Core classes/properties (shared)
+├── dfo-salmon-stock.ttl ← Stock assessment module
+├── vocab-escapement-methods.ttl ← SKOS scheme from DFO spreadsheet
+├── /docs/ ← HTML docs (pyLODE/WIDOCO)
+├── /mapping/ ← term mapping sheets, sample data
+└── /w3id/ ← .htaccess for w3id
 
-> The **top-level ontology** (`dfo-salmon.ttl`) imports the **Core** and **Stock** modules. Genetics and governance modules can be added later in the same style and imported there.
 
 ---
 
-## Modeling Principles
+## Modeling Principles  
 
-### DwC vs `dwciri:` (literals vs IRIs)
-- Use `dwc:` terms for **literals** (strings, numbers, dates).  
-- Use `dwciri:` terms for **IRI links** (e.g., `dwciri:taxonID` → GBIF Backbone IRIs).  
-- Avoid using `*ID` literal terms as object properties.
+Before diving into specifics, it’s important to step back and define **why modeling principles matter**. Ontologies are only useful if they:  
+1. Are **consistent** (no contradictory logic).  
+2. Are **interoperable** (play well with external vocabularies and ontologies).  
+3. Use **persistent identifiers (IRIs)** that can be referenced across systems and time.  
+4. Support both **human understanding** (via labels, definitions, and vocabularies) and **machine reasoning** (via OWL axioms).  
 
-The starter ontology includes `dfo:taxon ⊑ dwciri:taxonID` so a `dfo:Stock` (or related instance) can link to a GBIF Backbone **taxon IRI** cleanly.
+### IRIs — What and Why  
+- An **IRI** (Internationalized Resource Identifier) is the globally unique identifier for a concept, class, or individual.  
+- Example: `https://w3id.org/dfo/salmon#Stock/SkeenaSockeye`  
+- Without IRIs, we’d only have local names. IRIs allow datasets and models to **link up**, which is the entire point of the semantic web.  
 
-### Units (QUDT/OM)
-- Counts use `dfo:countValue` (xsd:integer) and `dfo:countUnit` (IRI).  
-- Use `unit:Each` (or other QUDT/OM unit IRIs) to avoid ambiguous string units.
-
-### Modularization
-- **Core**: shared classes/properties (Stock, CU, MU, SurveyEvent, EscapementMeasurement, Dataset, Indicator).  
-- **Stock**: stock-assessment-specific subclasses and comments.  
-- **Vocabularies**: SKOS concept schemes for controlled lists (e.g., escapement methods).  
-- **Future**: Genetics and Governance/Provenance as separate modules to keep concerns isolated.
-
-### SKOS + OWL “hybrid”
-- Use SKOS for **maintainable vocabularies** (method names, categories).  
-- Use OWL for the **data model** (classes/relations).  
-- The Core provides a few **annotation properties** (e.g., `dfo:expectedRole`, `dfo:granularityLevel`) to record intent when evolving SKOS lists toward OWL patterns without punning.
+### Our Specific Choices  
+- **DwC vs dwciri:** I use `dwc:` terms for literals (strings, numbers, dates) and `dwciri:` terms for links to IRIs (e.g., taxonomic references in GBIF). This keeps us aligned with Darwin Core conventions while supporting linked data.  
+- **Units:** I require QUDT/OM IRIs (e.g., `unit:Each`) for count units. Strings like `"fish"` are ambiguous and hurt interoperability.  
+- **SKOS + OWL hybrid:** SKOS gives us maintainable vocabularies; OWL gives us structural logic. By combining them, I can let communities review and maintain vocabularies without needing to edit complex OWL.  
+- **Modularity:** Each domain area (Core, Stock Assessment, Vocabularies, Genetics, Governance) is in its own file, but they can be merged for editing and visualization.  
 
 ---
 
-## Ontology Modules
+## Ontology Modules  
+- **Core:** foundational classes and properties (`dfo:Stock`, `dfo:ConservationUnit`, `dfo:Dataset`, `dfo:Indicator`).  
+- **Stock Assessment:** subclasses for measurement types (e.g., `dfo:WeirCountMeasurement`) and survey events.  
+- **Vocabularies:** SKOS ConceptSchemes (e.g., escapement methods) for consistent terminology across datasets.  
+- **Future: Genetics:** representation of GSI outputs, samples, markers, protocols.  
+- **Future: Governance / Provenance:** using PROV-O to track dataset creation, stewardship roles, and provenance.  
 
-### Core
-Core classes and properties shared across modules:
-- `dfo:Stock`, `dfo:ConservationUnit`, `dfo:ManagementUnit`
-- `dfo:SurveyEvent`, `dfo:EscapementMeasurement`
-- `dfo:Dataset` (subClassOf `schema:Dataset`) for catalog alignment
-- `dfo:Indicator`
-- Key properties:  
-  - `dfo:hasConservationUnit`, `dfo:hasManagementUnit`  
-  - `dfo:aboutStock` (EscapementMeasurement → Stock)  
-  - `dfo:observedDuring` (EscapementMeasurement → SurveyEvent)  
-  - `dfo:usesMethod` (EscapementMeasurement → SKOS Concept)  
-  - `dfo:eventDate` (SurveyEvent), `dfo:countValue`, `dfo:countUnit`
-  - `dfo:region` (literal; temporary for aggregation)
-
-### Stock Assessment
-- Subclasses for measurement types: `dfo:WeirCountMeasurement`, `dfo:SonarCountMeasurement`, `dfo:AerialCountMeasurement`.
-- Subclass for events: `dfo:EscapementSurveyEvent`.
-- Intended to be extended with benchmarks/targets and indicators used by FSAR.
-
-### Vocabularies
-- `vocab-escapement-methods.ttl` provides a **SKOS ConceptScheme** derived from DFO spreadsheet content: top concepts → categories → terms.  
-- Use these IRIs as the object of `dfo:usesMethod` for **consistent cross-dataset alignment**.
-
-### Future: Genetics
-- Classes to model GSI outputs, reporting units (repunits), materials/samples, markers, and protocols.  
-- Map reporting units to Conservation Units (WSP) using `skos:exactMatch` / `skos:closeMatch` where appropriate.
-
-### Future: Governance / Provenance
-- Adopt **PROV-O** to capture who created/updated a dataset and how it was processed (`prov:Activity`, `prov:Agent`, `prov:wasGeneratedBy`, `prov:used`).  
-- Align dataset metadata to **schema.org** for findability; optionally include GeoNetwork-required fields.
+**Editing workflow:** I merge all modules into one file for WebProtégé/WebVOWL viewing and editing. But once edits are agreed on, they must be applied back into the module-specific `.ttl` files, which remain the source of truth.  
 
 ---
 
-## IRI Policy
-
-- **Base:** `https://w3id.org/dfo/salmon#` (`dfo:`).  
-- **Instances:** Use **HTTP IRIs** for Stocks, Events, Measurements, Datasets. Example patterns (customize in code):  
-  - `https://w3id.org/dfo/salmon#Stock/{CU-or-code}`  
-  - `https://w3id.org/dfo/salmon#Event/{YYYY}/{Region}/{ID}`  
-  - `https://w3id.org/dfo/salmon#Meas/{EventID}/{Type}`
-- **Taxa:** Use `dfo:taxon` to link to **GBIF Backbone** IRIs (`dwciri:taxonID` semantics).  
-- **Locations/Agents:** Keep as literals initially; introduce IRIs later.
+## IRI Policy  
+- **Base:** https://w3id.org/dfo/salmon#  
+- **Instances:** use HTTP IRIs for Stocks, Events, Measurements, Datasets.  
+- **Taxa:** link to GBIF Backbone IRIs.  
+- **Locations/Agents:** literals for now, IRIs later as needed.  
 
 ---
 
-TODO:
-## W3ID Setup
-
-1. Create `/w3id/dfo/salmon/` in this repo (or a sibling “infra” repo) with an `.htaccess` such as:
-   ```apache
-   RewriteEngine On
-   # Turtle when requested
-   RewriteCond %{HTTP_ACCEPT} text/turtle
-   RewriteRule ^$ https://raw.githubusercontent.com/dfo-pacific-science/dfo-salmon-ontology/main/dfo-salmon.ttl [R=302,L]
-
-   # HTML docs if you publish them under /docs/
-   RewriteCond %{HTTP_ACCEPT} text/html
-   RewriteRule ^$ https://dfo-pacific-science.github.io/dfo-salmon-ontology/ [R=302,L]
-
-   # Fallback
-   RewriteRule ^$ https://raw.githubusercontent.com/dfo-pacific-science/dfo-salmon-ontology/main/dfo-salmon.ttl [R=302,L]
-   ```
-2. Submit a PR to [`https://github.com/perma-id/w3id.org`](https://github.com/perma-id/w3id.org) adding your `/dfo/salmon/` directory.  
-3. After merge, **the namespace is live** and will redirect to your TTL/HTML.
+## W3ID Setup  
+I configure `/w3id/dfo/salmon/` with `.htaccess` redirects for Turtle, HTML, and fallbacks. Then I submit a PR to [w3id.org](https://github.com/perma-id/w3id.org).  
 
 ---
 
-## Competency Questions & Example SPARQL
+## Competency Questions & Example SPARQL  
 
-> Replace example IRIs/fields with your actual instance IRIs once loaded. Prefixes assumed:
-> ```sparql
-> PREFIX dfo:   <https://w3id.org/dfo/salmon#>
-> PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
-> PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
-> PREFIX dct:   <http://purl.org/dc/terms/>
-> PREFIX prov:  <http://www.w3.org/ns/prov#>
-> PREFIX unit:  <http://qudt.org/vocab/unit/>
-> ```
+When designing this ontology, I defined **competency questions** — the queries I want the ontology to be able to answer. These questions shaped the design of classes, properties, and vocabularies.  
 
-### Q1. *How many populations (stocks) were monitored in 2022?*
-```sparql
-SELECT (COUNT(DISTINCT ?stock) AS ?nStocks)
-WHERE {
-  ?meas a dfo:EscapementMeasurement ;
-        dfo:aboutStock ?stock ;
-        dfo:observedDuring ?event .
-  ?event dfo:eventDate ?date .
-  FILTER (STRSTARTS(STR(?date), "2022"))
-}
-```
+I grouped them into themes:  
 
-### Q2. *Trend in regional abundance of Sockeye*
-```sparql
-SELECT ?region (YEAR(?date) AS ?year) (SUM(?count) AS ?regionalTotal)
-WHERE {
-  ?meas a dfo:EscapementMeasurement ;
-        dfo:aboutStock ?stock ;
-        dfo:observedDuring ?event ;
-        dfo:countValue ?count .
-  ?event dfo:eventDate ?date ;
-         dfo:region ?region .
-  ?stock dfo:taxon ?sockeyeIri .  # GBIF Backbone taxon IRI for Sockeye
-}
-GROUP BY ?region (YEAR(?date))
-ORDER BY ?region ?year
-```
+### 1. **Monitoring Coverage and Effort**  
+- *How many populations (stocks) were monitored in a given year?*  
+- *Which survey events occurred in a given year and region?*  
 
-### Q3. *Datasets contributing to FSAR indicators updated in last 12 months*
-```sparql
-SELECT ?dataset ?title ?modified
-WHERE {
-  ?dataset a dfo:Dataset ;
-           dct:title ?title ;
-           dct:modified ?modified .
-  FILTER (?modified >= (NOW() - "P12M"^^xsd:duration))
-  # Link to Indicator if used in your data graph:
-  # ?indicator a dfo:Indicator ; dfo:isComputedFrom ?dataset .
-}
-ORDER BY DESC(?modified)
-```
+These drove the creation of `dfo:SurveyEvent`, `dfo:EscapementMeasurement`, and the property `dfo:eventDate`.  
 
-### Q4. *Which reports cite datasets derived from GSI collections (2019–2021)?*
-```sparql
-SELECT ?report ?dataset
-WHERE {
-  ?dataset a dfo:Dataset ;
-           dct:issued ?issued .
-  FILTER("2019-01-01"^^xsd:date <= ?issued && ?issued < "2022-01-01"^^xsd:date)
-  # Add your provenance pattern once genetics module is in place:
-  # ?dataset prov:wasGeneratedBy ?activity .
-  # ?activity dct:subject "GSI" .  # or a more specific property
-  ?report dct:references ?dataset .
-}
-```
+### 2. **Trends and Abundance**  
+- *What is the trend in regional abundance of Sockeye?*  
+- *Can escapement datasets from multiple river systems be aggregated consistently?*  
 
-### Q5. *Can escapement datasets from multiple river systems be aggregated consistently?*
-> Ensure all count records use `dfo:countUnit` with QUDT/OM IRIs (e.g., `unit:Each`) and normalize methods via `dfo:usesMethod` → SKOS.
+This motivated `dfo:countValue`, `dfo:countUnit`, and controlled vocabularies for methods. By standardizing units and methods, we can aggregate across systems.  
+
+### 3. **Data Products and Indicators**  
+- *Which datasets contributed to FSAR indicators updated in the last 12 months?*  
+- *Which datasets are linked to specific indicators or benchmarks?*  
+
+This required `dfo:Dataset` (aligned with schema:Dataset) and `dfo:Indicator`, with properties linking datasets to indicators and metadata.  
+
+### 4. **Genetics and Provenance** (future modules)  
+- *Which reports cite datasets derived from GSI collections (2019–2021)?*  
+- *Who created or updated a dataset, and how was it processed?*  
+
+This is why I plan to include PROV-O patterns (`prov:Activity`, `prov:Agent`) and genetics-specific classes.  
+
+**Overall design decision:** I only included questions that require interoperability across datasets, governance tracking, or long-term findability. These are the areas where an ontology adds the most value compared to a simple relational database.  
 
 ---
 
-## Contributing
+## Contributing  
+- Keep core, modules, and vocabularies in separate TTLs.  
+- Use `dfo:` for local terms, `dwc:` for literals, and `dwciri:` for IRI links.  
+- Prefer external IRIs when available; only mint DFO-specific terms when necessary.  
+- Pull requests should include reasoning and examples.  
+- Turtle style: one triple per line; English labels and comments.  
 
-1. **File layout**: keep core, modules, and vocabularies in separate TTLs.  
-2. **Prefixes**: use `dfo:` for local classes/properties; reuse `dwc:` for literals and `dwciri:` for IRI links when you add them.  
-3. **Vocabularies**: prefer external IRIs (GBIF Backbone, ENVO, etc.); create SKOS concepts only when genuinely DFO-specific.  
-4. **Pull requests**: include a brief description, examples, and reasoning.  
-5. **Coding style**: Turtle, one triple per line; labels and comments in English (`@en`).
-
-### Code of Conduct
-Be constructive and evidence-based. Cite tickets, datasets, or docs when proposing changes.
+**Code of Conduct:** Be constructive and evidence-based.  
 
 ---
 
-## Roadmap (GitHub Issues)
-
-Create issues in this repo for the following tasks (use labels: `module`, `vocabulary`, `infra`, `docs`, `question`, `help wanted`).
-
-1. **Infra — Set up w3id redirects**  
-   - Add `/w3id/dfo/salmon/.htaccess` and open PR to `w3id.org`.  
-   - ✅ Accept-header routing for Turtle/HTML.
-
-2. **Docs — Publish HTML**  
-   - Generate HTML with pyLODE or WIDOCO into `/docs/`.  
-   - Link from README and w3id.
-
-3. **Module — Genetics scaffold**  
-   - Classes for GSI: ReportingUnit, Material/Sample, Protocol, Assay, Sequence.  
-   - Map ReportingUnits → ConservationUnits via `skos:exactMatch/closeMatch`.
-
-4. **Module — Governance/Provenance scaffold**  
-   - Add PROV-O patterns (`prov:Activity`, `prov:Agent`).  
-   - Roles: Data Steward, Data Trustee, Product Owner.
-
-5. **Vocabulary — Expand escapement methods**  
-   - Validate terms with field teams; add missing synonyms as `skos:altLabel`.  
-   - Add `skos:scopeNote` where ambiguity exists.
-
-6. **Alignment — GBIF Backbone integration**  
-   - Populate `dfo:taxon` with GBIF IRIs for key stocks/populations.  
-   - Consider `owl:sameAs` to WoRMS/ITIS where needed.
-
-7. **Examples — Sample data graph**  
-   - Small TTL with 1 Stock, 1 Event (2022), 2 Measurements (weir/sonar), 1 Dataset.  
-   - Verify the SPARQL examples run.
-
-8. **QA — SHACL shapes**  
-   - Draft SHACL for required fields (`aboutStock`, `observedDuring`, `countUnit`).  
-   - Add a GitHub Action to validate PRs.
-
-9. **Catalogue — Schema.org mapping**  
-  - Ensure `dfo:Dataset` instances carry `dct:title`, `dct:modified`, keywords.  
-  - Crosswalk to GeoNetwork metadata fields.
-
-10. **Policy — Benchmarks & decisions**  
-   - Add `Benchmark`, `ReferencePoint`, and links to Indicators.  
-   - Support queries like “Can Skeena sockeye support a commercial fishery?”
-
-> Open one issue per task and link them to a high-level **Project** board if desired.
-
----
-
-## Acknowledgments
-
-- Darwin Core and Darwin Core Data Package communities.  
-- GBIF, OBIS, ENVO, QUDT/OM maintainers.  
-- DFO Pacific Science — Data Stewardship Unit, for requirements and test cases.
-
----
-
-## Contact
-
-DFO Pacific Science — Data Stewardship Unit  
-Maintainer: Brett Johnson (Program Head, Data Stewardship Unit)  
-License: CC-BY 4.0
+## Todo  
+- Infra: w3id redirects  
+- Docs: publish HTML docs  
+- Vocabulary: expand escapement methods  
+- Alignment: GBIF Taxonomic Backbone integration  
+- QA: SHACL shapes and GitHub Action validation  
+- Catalogue: schema.org crosswalks  
+- Policy Module: add benchmarks and reference points for FSARs?
