@@ -63,13 +63,13 @@ This dual system—**easy merged viewing/editing** plus **modular maintenance**�
 
 ## Repository Layout  
 /dfo-salmon-ontology
-├── README.md ← This file
-├── dfo-salmon.ttl ← Top-level ontology; imports modules
-├── dfo-salmon-core.ttl ← Core classes/properties (shared)
-├── dfo-salmon-stock.ttl ← Stock assessment module
-├── vocab-escapement-methods.ttl ← SKOS scheme from DFO spreadsheet
-├── /docs/ ← HTML docs (pyLODE/WIDOCO)
-├── /mapping/ ← term mapping sheets, sample data
+├── README.md ← This file \
+├── dfo-salmon.ttl ← Top-level ontology; imports modules \
+├── dfo-salmon-core.ttl ← Core classes/properties (shared) \
+├── dfo-salmon-stock.ttl ← Stock assessment module \
+├── vocab-escapement-methods.ttl ← SKOS scheme from DFO spreadsheet \
+├── /docs/ ← HTML docs (pyLODE/WIDOCO) \
+├── /mapping/ ← term mapping sheets, sample data \
 └── /w3id/ ← .htaccess for w3id
 
 
