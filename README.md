@@ -3,7 +3,7 @@
 **License:** CC-BY 4.0  
 **Status:** Starter, modular, WebProtégé-ready  
 
-We're developing this modular ontology for DFO salmon data. It builds on the Darwin Core Conecptual Model ecosystem while adding DFO-specific stock assessment concepts and vocabularies. Our goal is to make integration and analysis easier for scientists, while keeping everything interoperable with external communities like GBIF Backbone, ENVO, and OBIS and other  salmon data producing institutions.
+We're developing this modular ontology for DFO salmon data. It builds on the Darwin Core Conceptual Model ecosystem while adding DFO-specific stock assessment concepts and vocabularies. Our goal is to make integration and analysis easier for scientists, while keeping everything interoperable with external communities like GBIF Backbone, ENVO, and OBIS and other  salmon data producing institutions.
 
 ---
 

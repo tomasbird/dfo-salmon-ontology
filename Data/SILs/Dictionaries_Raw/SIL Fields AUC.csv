@@ -1,0 +1,83 @@
+﻿SIL AUC,,
+Data Class,FIELDS,DEFINITION
+Inspection Details,Area,This is the subdistrict. In most cases subdistricts are the same as statistical areas. They mainly differ for streams that eventually drain into the Fraser and for large areas that have been split up and thus have a/b/c... designations. E.g. Statistical area 03 has two subdistricts 3A and 3B.
+,Stream Name,This is the name of the stream  being surveyed.
+,Survey Date,Date which survey was done in DD/MMM/YYYY
+,Start Time,"This is the time (military time) that the stream inspection began, eg: 08:00."
+,Finish Time,"This is the time (military time) that the stream inspection ended, eg: 14:00."
+,Inspection Group,This is the name of the organization or group that conducted the stream inspection 
+,Observer 1,Observer 1 is the name of the person responsible for and conducting the inspection 
+,Observer 2,Observer 2 is the name of other person(s) participating in the inspection. 
+,STAD Contact,Contact name for the coordinator of the Observers
+,Index Site,Refers to specific location or section of a river or stream that is designated for monitoring and counting salmon populations
+,Inspection Mode,This is the mode of inspection used in the inspection
+,Water Temp,This is the temperature of the water in degrees Celsius.
+,Water Clarity,This is an indication of how visible the fish are. It should be estimated at a location where you cannot see the bottom. This could be based on Secchi disc reading or a visual estimation in the deepest water.  If the bottom is visible throughout the area surveyed then choose 3m-5m or to bottom. For snorkel inspections water clarity should be estimated horizontally at a location where you cannot see the opposite bank.
+,Air Temp ©,This is a measure of the air temperature in degrees Celsius.
+,Water Level,This is a subjective assessment of water depth 
+,Sky,"Average Sky Conditions (Full, bright, medium, dark)"
+,Cloud,The percentage of visible sky that is filled by clouds
+,Precipitation ,This is an average indication of rain and/or snow conditions during the inspection that will influence fish visibility
+,Fish Visibility,"This is a classification of the average visibility of the fish as influenced by water properties, sky conditions and precipitation during the inspection"
+,Segment Inspected,This is the number of segments that were inspected during this stream survey.
+,Target Species 1 & 2,"This is the species on which most enumeration effort is focused. Timing, methodology and location should be appropriate for the target species"
+,Initial data entry by,This is the person who is responsible for the initial data entry into the Database
+,Date (and Time),The date which entry was made in the database with the time included
+,Updated by,This is the person who is responsible for updating the SIL in the database
+,Updated (Date & Time),The date the SIL data was updated 
+,Reason ,Reason why SIL was updated 
+,,
+Segments,Segment Name,Name of the Segment to be surveyed
+,Segment Start,This is a description of where a  segment starts. It can either be a permanent landmark or be described by coordinates. 
+,Segment Stop,This is a description of where a segment stops. It can either be a permanent landmark or be described by coordinates. 
+,Distance,This is the distance in metres that was surveyed.
+,Non Standard Segment Details start,"This is a description of where a non-standard segment starts and stops. It can either be a permanent landmark or be described by coordinates. 
+
+The distance is the distance in metres that was surveyed. 
+
+"
+,Non Standard Segment Details stop,
+,Non Standard Segment Details Distance,
+,Inspection method if different from primary,"The inspection method is If a different inspection mode is used during this non-standard stream inspection, the method should be stated"
+,Species,This is one of the five species of salmon being estimated. 
+,# Holding,This is the number of fish observed that are not paired nor actively spawning. This number may be zero if there are no fish present or if all fish are spawning and/or dead
+,# Spawning,This is the number of fish observed that are paired and/or actively spawning. 
+,Total,This is the calculated sum of # holding and # spawning fish.
+,# Est Live,"This is an estimation of the number of live fish thought to be in the segment and includes the observed count plus the number of live fish that the observer feels were in the segment, but were not observed. Unseen fish could be in areas such as: under cutbanks, log jams, deep water or side channels"
+,% Obs Eff,This is based on number of fish observed and estimated.
+,Rationale for Observer Efficiency,"This is an explanation for the observer efficiency which could include stream visibility, undercut banks, etc."
+,% New,"This is an estimate of the percentage of fish that have recently arrived to the stream, ranging from 0% to 100%.  This can be based on numeric differences between inspections or on the physical condition of the fish in this inspection. New fish are usually bright fish with no fungus or white-coloured, eroded fins. "
+,Dead,Number of dead adult fish observed in the segment. Dead fish include all carcasses that can be identified to species and are reasonably complete 
+,Live Jack,This is the number of live jacks observed.
+,Other,"This is the type and number of other subjects (e.g. 4 bears, 12 eagles, 3 anglers, etc.)."
+,Non- Salmonid Species Comment,comments for non salmonid species
+,Comment,Any comments specific to the stream segment inspection.
+,,
+Inspection Summary,Species,This is one of the five species of salmon being estimated. 
+,Tot Live,It is the total number of live adults of each species actually observed during this inspection and is calculated by summing all segment live Observed
+,Tot Segment Est,It is the total number of live adults of each species estimated to be present during this inspection and is calculated by summing all segment live Estimated.
+,% of Pop,"This is the proportion of the in-stream adult population for this inspection that was accounted for in the SEGMENT section. This is not necessarily the same as the percentage of the stream that was inspected. Therefore, for a defensible value, you must know the spawning and holding distribution of each species. For example, the sum of all segment combined totals may represent 80% of the total in-stream population at the time of inspection. Record 80% in this field. If all current spawning and holding areas have been inspected then the percent population is 100%."
+,Stream Estimate,This is the total number of live adults of each species estimated for this inspection calculated by summing all SEGMENT section live Estimated recorded values and applying any expansion resulting from %Population
+,Tot Dead,This is the total number of dead adults of each species actually observed during this inspection and is calculated by summing all SEGMENT section dead Observed.
+,Live Jacks,This is the total number of live jacks of each species actually observed during this inspection and is calculated by summing all SEGMENT section live jacks Observed.
+,Reliability,"This is the observer's opinion of the overall reliability of the estimate for this inspection. It should be based on environmental conditions and possibly %Population. For example, if Stream Visibility was high and the majority of the population was observed then Reliability should be high. If the above was true, but there was difficulty in distinguishing the species then the reliability should be lower."
+,Species Comment,any species specific comments for the stream inspection. 
+,Rationale for % of Pop,This is when If %Population is less than 100% then an explaination is required on which portions of the stream were not inspected and why.
+,"Comments (Inspection problems, water conditions, affecting fish visibility)","any specific comments for the stream inspection. Comments could include: inspection problems, water conditions affecting fish visibility or any other comments you feel are important to back up your stream estimate."
+,,
+Assessment and Unusual Conditions,Prespawn mortality,This is used to record unusually high or unusually low numbers of adult fish that died prior to spawning. Prespawn mortality is indicated by intact gonads which are best detected by incision
+,Disease/Parasites,This is an indication of unusual presence or absence of fish diseases or parasites.
+,Sex ratio,"This is an indication of an unusually high proportion of males or females. Visual determination may be difficult. Carcasses may be used to determine abnormal sex ratios. Sex ratios of live fish may be determined provided there is a clear distinction between males and females using  size, shape and/or colour."
+,Recent Flood,This indicates that a flood of unusually high magnitude has recently occurred. An unusual flood produces changes to the channel or enough  bedload movement to significantly scour redds and eggs.
+,Drought,This is an indication of conditions dry enough to impede normal fish migration/spawning or to result in the desiccation of redds and eggs.
+,ice condition,This is an indication of freezing conditions that could result in a significant loss of eggs. These conditions would occur when ice has formed in the gravel and is impeding water flow.
+,water temp,This is an indication of water temperature well above or below the seasonal norm. 
+,"Debris Jam, Obstructions",This is an indication of the appearance of unusual debris that results in jams or obstructions appearing since the last inspection.
+,Silting ,This is an indication of an unusual deposition of fine particles sufficient to smother eggs.
+,Bank erosion,This is an indication of unusual new stream side degradation.
+,Riparian Cover Loss,This is an indication of unusual of the loss of stream side vegetation.
+,"Loss of Debris Jam, Obstrcutions",This is an indication of the loss of debris that results in the elimination of jams or obstructions since the last inspection
+,Slides,This is an indication of an unusual slope failure resulting in the deposition of large amounts of materials into the stream.
+,Stream bed movements,This is an indication of unusual bed load movement that results in sediment loss or deposition. This may include the relocation of stream channels.
+,Other Unusual Conditions,"This is an indication of unusual bed load movement that results in sediment loss or deposition. This may include the relocation of stream channels.
+This is an indication of some other unusual condition not captured above."

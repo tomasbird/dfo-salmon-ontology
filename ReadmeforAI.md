@@ -9,7 +9,7 @@ The goal of this project is to disambiguate the multiple different kinds of esca
  - **Map between dictionaries:** Provide 1:1 translation between different dictionaries. 
  - **Disambiguate terms:**  Many terms in use are easy to misinterpret, leading to potential mis-use of the data. This project will make sure that the meanings of these terms is accessible to a new user.
  - **Classify terms:** Many terms may be similar, in that they belong to the same category of things, but are slightly different. The ontology will help define these groupings, and identify what information is needed to keep them distinct
- - **Metadata tags:** Some fields require additional Metadata in order to be used appropriately. we will identify these terms and link them 
+ - **Metadata tags:** Some fields require additional Metadata in order to be used appropriately, or to fit into the ontology. we will identify these terms that need more metadata and determine what the additional metadata needs are.  
  - **Changes:** Where monitoring methods may change over time terms may change in meaning.  We will document these changes as part of the ontology. 
 
 # Approach
@@ -22,16 +22,16 @@ We will use the knowledge modeling approach described in the github repo as a ta
 
 
 # Input Data
-The data being used in this case are data dictionaries from long-term monitoring projects aimed at counting salmon that are returning to spawn in rivers around BC and the Yukon. EAch dicitonary describes the fields used in a long-term monitoring series.   the different monitoring efforts often occur for different species in different contexts using different methods.  
+The data being used in this case are data dictionaries from long-term stream inspection monitoring projects aimed at counting salmon that are returning to spawn in rivers around BC and the Yukon. Each dicitonary describes the fields used in a long-term monitoring series.   the different monitoring efforts often occur for different species in different contexts using different methods.  STream inspection log data are to be stored in a "SILs" folder, other inspection method types may be added later.
 
 ## Raw data
-Original data dictionaries are stored together in a folder called "Data/Dictionaries_Raw"
+Original data dictionaries are stored together in a folder called "Data/SILs/Dictionaries_Raw"
 
 ## Formatted 
-Formatted data dictionaries are stored together in a folder called "Data/Dictionaries_Formatted"
+Formatted data dictionaries are stored together in a folder called "Data/SILs/Dictionaries_Formatted"
 
 ## References
-Reference documents such as field guides are used to provide background context for the dictionaries.  These provide information on why and how different fields are collected in greater detail than many dictionaries. They are stored in a "Data/Field_Guides". other documents concernind broad information about escapement monitoring are 
+Reference documents such as field guides are used to provide background context for the dictionaries.  These provide information on why and how different fields are collected in greater detail than many dictionaries. They are stored in a "Data/SILs/Field_Guides". other documents concernind broad information about escapement monitoring are 
 
 ## Cataloguing 
 Dictionaries and their field guides will be described in an excel document.

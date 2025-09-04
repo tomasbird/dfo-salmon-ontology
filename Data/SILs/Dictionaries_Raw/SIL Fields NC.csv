@@ -1,0 +1,50 @@
+﻿NC SIL FORM ,,
+,FIELDS,DEFINITION
+Header Information,Area,DFO Statistical Management Areas
+,Stream Name,This is the name of the stream or water body being surveyed.
+,Observers,Full name of the person responsible for conducting the inspection (e.g. crew chief's name).  Other names or initials could also be entered following the crew chief's name.
+,Affilation,This is the name of the company/organisation that Observer is associated with
+,Date,Day/Month/Year of the stream inspection.
+,Start Time,"Time the inspection began, use 24 hour format (eg. Enter 1630 for 4:30 PM)"
+,Stop Time,"Time the inspection ended, use 24 hour format (eg. Enter 1630 for 4:30 PM)`"
+,Target Species,the species on which most enumeration effort is focused
+,Other,the other species observed
+,Inspection Mode, the main inspection method used during the survey
+,Section Inspected, landmarks or descriptions of the sections within the stream that were enumerated.  
+,Fish Distribution,"describe the distribution of salmon in the stream, "
+,Distance Inspected,"Total stream length segment enumerated in meters as measured from a map, hip chain, aerial photo, etc"
+,Start Boundary,A description of where the observed stream segment starts.  This should be a permanent landmark to ensure repeatable enumerations in the future. 
+,Coordinates,These are start and boundary coordinates in either UTMs or Lat/Long.
+,Stop Boundary,A description of where the observed stream segment ends.  This should be a permanent landmark to ensure repeatable enumerations in the future. 
+,Coordinates,These are stop boundary coordinates in either UTMs or Lat/Long.
+,,
+Environmental Conditions,Brigntness,"measure of light conditions that will influence fish visibility.  It quantifies the amount of light reaching the water surface.  This is influenced by factors such as cloud thickness and overhead tree canopy.  Full = direct sunlight, shadows well defined.  Bright = Hazy or light cloud cover, outline of sun visible, shadows are poorly defined.  Medium = Cannot see the outline of the sun, no shadows, yet there is a distinguishable bright area of the sun in the sky.  Dark = No outline of the sun, no shadows, and no distinguishable bright area of the sun in the sky."
+,Precipitation,An average of the rain or snow conditions during the inspection that will influence fish visibility. 
+,Windy,if wind is negatively affecting fish visibility 
+,Water Temp,Temperature of the water in degrees Celsius.
+,Bankfull,"the condition that best describes the portion of the channel that is full. pick a glide area (smooth flowing water) rather than a riffle or pool area and visualise the cross-sectional area of the stream as if it was full, (water up to the permanent vegetation on the banks)."
+,Water Colour, the average colour condition of the water.
+,Stream Visibility,This is a classification which best describes overall fish visibility.
+,,
+Enumeration,Species,This is one of the five species of salmon being estimated. 
+,Holding Outside Stream,"An estimate of the number of fish holding outside the stream mouth, (at the confluence of its associated lower order stream, estuary, or lake). Indicate in the comments if you are unsure whether these fish holding outside the stream will enter the stream being enumerated. "
+,Holding,The number of fish that are not paired and have not spawned.  This number may be zero if there are no fish present or if all fish are spawning and/or dead.
+,spawning/spawned out,"The number of fish that are paired, actively spawning, or spawned out. "
+,Adult live observed total,Total number of instream fish recorded as holding and spawning.  This value can be adjusted if holders and spawners were not differentiated.
+,Adult live estimated total,An estimation of the number of total live fish estimated to be present in the section inspected.  
+,New (Since Last Inspection),"An estimate of the Total Number, (Not Percentage) of fish that have arrived to the stream since it was last inspected.  This could be based on the physical condition and behaviour of the fish relative to previous inspections and could be difficult to estimate unless frequent inspections have been made."
+,Fish Countability,"Nil, Poor, Fair, Good, or Excellent:  For each species observed enter the description which best describes its visibility."
+,Estimated Reliability," the ranking which best describes the reliability of the Total Estimated Adult Live.  It should be based on the inspection detail parameters recorded for this inspection, particularly proportion of the stream inspected and all factors affecting fish visibility"
+,Adult Dead Observed,Number of dead adult fish observed. Dead fish include all carcasses that can be identified to species and are reasonably complete
+,Adult dead Estimated,"An estimation of the number of dead fish thought to be in the segment and includes the observed count plus the number of dead fish that the observer feels were in the segment, but were not observed. "
+,% Pre-spawn Mortality,Estimated percentage of adult fish that died prior to spawning (I.e. gonads intact as detected by incision).
+,Jack Live Observed,Number of live jacks observed.
+,Jack Live Estimated,The total number of live jacks estimated to be present in the section inspected.
+,Active Spawning,"the mode which best represents the timing of the inspection relative to spawning, (Before, Start, Peak, End)."
+,Estimated spawning date,"An estimate of the date corresponding to the mode selected for Active Spawning: B-Before, S-Start, P-Peak, E-End, (i.e. Stream was inspected on Oct. 19 and based on your observations ""Peak"" was selected for the Active Spawning field. The Active Spawning Date for the Peak of Spawning was estimated to be 4 days earlier on Oct. 15th)."
+,Estimated Escapement To Date,An estimate of the total fish escapement to date based on this inspection and previous ones.  It is unlikely an estimate could be made based on very few or infrequent inspections.
+,,
+Comments,Rationale for Estimated Adult Live,This is an explanation for the inclusion of any unobserved fish that were recorded in the Estimated Adult Live field.  If additional rationales are provided for any other estimates be sure to include what estimate goes with what rationale. 
+,Unusual Conditions,"comments on fish assessment such as pre-spawn mortality, disease/parasites, sex ratio; and stream assessment such as recent flood, drought, ice conditions, water temperature, habitat conditions. "
+,General Comments,space provided to further describe any of the above fields or to include any additional comments about the inspection
+,Miscellaneous,This area could be used to draw in a map of the stream and its inspected areas or be used as an additional comments section.

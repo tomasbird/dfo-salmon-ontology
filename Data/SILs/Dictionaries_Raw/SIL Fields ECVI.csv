@@ -1,0 +1,44 @@
+﻿ECVI SIL FORMS,,
+Data Class,FIELDS,DEFINITION
+Ground Level Stream Inspection Log - Cover Page,Stream,Common name of the freshwater system you are surveying
+,Number of Streams segments in this Inspection,Number of segments in the stream
+,Date,The date that the survey was conducted
+,Start Time,Time at which survey started in 24 hrs format
+,End Time,Time at which survey stopped in 24 hrs format
+,Surveyor Name(s),All crew members who participated in the survey. include surveyors’ affiliation on the reverse side of page under “Comments”.
+,Cloud Cover,An estimate of how much of the sky is covered in cloud
+,Precipitation ,average indication of rain and/or snow conditions during the inspection that will influence fish visibility
+,Fish Visibility,Fish visibility refers to the clarity of the water and the ability to observe fish within it. 
+,Light Level,Amount of light that is present.  Rate level by marking on the scale anywhere between “Bright” and “Dark”. Light level may not necessarily depend upon cloud cover (i.e. thin clouds produce bright daylight). 
+,Inspection Method,Method used during the survey. 
+,Water Clarity,"water clarity generally refers to the water characteristics if it is turbid, clear or murky"
+,Water Level,"Height or depth of water at a particulat point. Either estimate level based on average bank full height, or read staff gauge if one is present. Normal water level is not above the line of regular bank vegetation. "
+,Water Temperature,This is the temperature of the water
+,Target Species,The primary species for which the survey is conducted. More than one species may be chosen. 
+,"Comments (countability, surveyability, stream access, Observations during survey)","For more notes about extra observations or conditions that may affect surveyability or reliability of survey as well as extranneous biological information, such as bear sightings, multitude of fry in stream, visible redds"
+,,
+Ground Level Stream Inspection Log - Observations,Species,This is one of the five species of salmon being estimated. 
+,Other Species,List of the other species and the number observed (e.g. Rainbow Trout and Steelhead Trout)
+,Segment Name/ details,"Name of the segment, the marker boundaries, or describe segment boundaries with notable landmarks such as bridges and access points, or stream characteristics such as pools and log jams"
+,Start," the marker boundaries, or  segment boundaries with notable landmarks such as bridges and access points, or stream characteristics such as pools and log jams of the segment start"
+,Stop," the marker boundaries, or  segment boundaries with notable landmarks such as bridges and access points, or stream characteristics such as pools and log jams of the segment stop"
+,Habitat Type,"This is the habitat type of the segment surveyed and it is represented by pool, riffle, run, glide, mixed)"
+,Aduls Observed,number of live adults observed during the survey
+,Adult Estimated,an estimate of the total number of live adults likely present for that section (it may match your “Observed” value if appropriate); a percentage that was seen out of the total number of live adults likely present; or an Observed Efficiency.
+,Jacks,Number of Jacks observed
+,Dead, the observed number of adult carcasses observed
+,% of Spawning,"This is the % of the total fish by species that were observed spawning during the survey (not holding in pools), and this helps to determine run timing information."
+,,
+Ground Level Stream Inspection Log - Summary Page,Species,This is one of the five species of salmon being estimated. 
+,Other Species,List of the other species and the number observed (e.g. Rainbow Trout and Steelhead Trout)
+,Adults Observed - Total,sum of the number of live adults observed during the survey
+,Adult Estimated - Total, sum of the total number of estimate  likely present
+,Jacks - Total,Sum of the total number of Jacks observed
+,Dead - Total,Sum the total number of observed adult carcasses 
+,Estimate Reliability,"This is the observer's opinion of the  reliability of the estimate for this inspection. (e,g high, med, low)"
+,Estimate % Population surveyed,This is an estimation of the proportion of the stock that was surveyed out of the total number likely present in the system. Critical considerations in this estimation are the geographical distribution of the stock (or run); where the stock tends to hold or spawn at this time of year; how each species utilises the available habitat; and how much of the available habitat do you know or think the stock uses.
+,Total River Est, It refers to the estimated total number of each species in the river and applying any expansion to it 
+,Spawn Timing,"At what stage of the spawning period the species have reached at the time of the inspection e.g before, start, peak, end"
+,Rationale for Estimate,Comment on the premise used for the estimate % population surveyed
+,Distance Surveyed,the length of stream that is surveyed
+,Comments,"Record jacks, rationale for the estimate, spawning behaviour, or any other notes pertinent to each segment. Also used to record other species "
